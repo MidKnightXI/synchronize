@@ -54,15 +54,15 @@ for ASSET_URL in $ASSETS; do
     ASSET_NAME=$(basename $ASSET_URL)
     echo "Downloading asset $ASSET_NAME from $SOURCE_REPO..."
     curl -L -o $ASSET_NAME $ASSET_URL
-    
+
     if [ $? -ne 0 ]; then
         echo "Failed to download asset $ASSET_NAME."
         exit 1
     fi
-    
+
     echo "Uploading asset $ASSET_NAME to $TARGET_REPO..."
     gh release upload $RELEASE_TAG $ASSET_NAME --repo $TARGET_REPO
-    
+
     if [ $? -ne 0 ]; then
         echo "Failed to upload asset $ASSET_NAME."
         exit 1
